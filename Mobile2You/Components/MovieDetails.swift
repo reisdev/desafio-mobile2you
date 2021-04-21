@@ -67,7 +67,7 @@ struct MovieDetails: View {
                 }.padding(.leading,20)
                 Spacer()
             }.padding(.horizontal,20)
-        }
+        }.padding(.bottom,20)
     }
 }
 

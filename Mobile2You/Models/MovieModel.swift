@@ -7,12 +7,33 @@
 
 import Foundation
 
+struct Genre: Codable {
+    var id: Int;
+    var name: String;
+    
+    enum CodingKeys: String,CodingKey {
+        case id = "id"
+        case name = "name"
+    }
+}
+
 struct Movie: Codable {
+    var id: Int;
     var overview: String
     var popularity: Double
     var title: String
     var voteCount: Int
     var poster_path: String;
+    var releaseDate: String;
+    var similarMovies: [Movie];
+    var genres: [Genre]?;
+    var genre_ids: [Int]?;
+    var releaseYear: Int {
+        get {
+            return Int(releaseDate.split(separator: "-")[0]) ?? 1970
+        }
+    }
+    
     var posterPath: String {
         // Resolve a URL da imagem
         get {
@@ -21,34 +42,35 @@ struct Movie: Codable {
             self.poster_path = path
         }
     };
-    var similarMovies: [Movie];
-    
     enum CodingKeys: String,CodingKey {
+        case id = "id"
         case overview = "overview"
         case popularity = "popularity"
         case title = "title"
         case voteCount = "vote_count"
         case poster_path = "poster_path"
+        case genres = "genres"
+        case genre_ids = "genre_ids"
+        case releaseDate = "release_date"
         case similarMovies
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int.self, forKey: .id )
         overview = try values.decode(String.self, forKey: .overview)
         popularity = try values.decode(Double.self, forKey: .popularity)
         title = try values.decode(String.self,forKey: .title)
         voteCount = try values.decode(Int.self,forKey: .voteCount)
         poster_path = try values.decode(String.self,forKey: .poster_path)
+        releaseDate = try values.decode(String.self, forKey: .releaseDate)
+        if(values.contains(.genres)) {
+            genres = try values.decodeIfPresent([Genre].self,forKey: .genres)
+        }
+        if (values.contains(.genre_ids)) {
+            genre_ids = try values.decodeIfPresent([Int].self,forKey: .genre_ids)
+        }
         similarMovies = []
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(overview,forKey: .overview)
-        try container.encode(popularity, forKey: .popularity)
-        try container.encode(title, forKey: .title)
-        try container.encode(voteCount, forKey: .voteCount)
-        try container.encode(posterPath, forKey: .poster_path)
     }
 }
 

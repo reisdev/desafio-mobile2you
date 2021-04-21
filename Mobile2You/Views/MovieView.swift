@@ -16,29 +16,36 @@ struct MovieView: View {
     init(store: MovieStore){
         self.presenter = MoviePresenter(delegate: store)
         self.store = store
+        UIScrollView.appearance().bounces = false
     }
     
     var body: some View {
         ZStack {
-            VStack(alignment: .leading) {
-                VStack{() -> AnyView in
-                    switch store.state {
-                    case .loading:
-                        return AnyView(
-                            ProgressView().scaleEffect(2,anchor: .center))
-                    case .loaded(let movie):
-                        return (AnyView(
-                            MovieDetails(movie: movie)
-                        ))
+            Color.black.edgesIgnoringSafeArea(.all)
+            HStack {
+                VStack(alignment: .leading) {
+                    VStack{() -> AnyView in
+                        switch store.state {
+                        case .loading:
+                            return AnyView(
+                                ProgressView().scaleEffect(2,anchor: .center))
+                        case .loaded(let movie):
+                            return (AnyView(
+                                ScrollView(showsIndicators: false) {
+                                    MovieDetails(movie: movie)
+                                    ForEach(movie.similarMovies,id: \.id) { movie in MovieListItem(movie: movie)
+                                    }.background(Color.black)
+                                }.edgesIgnoringSafeArea(.all)
+                            ))
+                        }
                     }
+                    Spacer()
                 }
-                Spacer()
-            }.onAppear(perform: self.presenter.populate)
-            .navigationBarTitle("",displayMode: .inline)
-            .navigationBarHidden(true)
-        }.frame(height: UIScreen.main.bounds.height)
-        .edgesIgnoringSafeArea([.top,.bottom])
-        .background(Color.black)
+            }.background(Color.black)
+        }.navigationBarTitle("",displayMode: .inline)
+        .edgesIgnoringSafeArea(.all)
+        .navigationBarHidden(true)
+        .onAppear(perform: self.presenter.populate)
     }
 }
 
