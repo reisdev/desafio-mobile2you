@@ -6,26 +6,35 @@
 //
 
 import Foundation
+import Alamofire
 
-protocol MoviesPresenterProtocol {
-    init(interactor: MoviesInteractor)
-    var movie: Movie! { get };
-    var similarMovies: [Movie] {get }
+protocol MoviePresenterDelegate: AnyObject {
+    func renderLoading()
+    func render(movie: Movie)
 }
 
-final class MoviesPresenter : MoviesPresenterProtocol, ObservableObject {
+protocol MoviePresenterProtocol: AnyObject {
+    func populate()
+}
 
-    var movie: Movie! = nil;
-    var similarMovies: [Movie] = [];
+class MoviePresenter : MoviePresenterProtocol {
 
-    private let interactor: MoviesInteractor;
+    private weak var delegate: MoviePresenterDelegate?
+    
     private let movieId = 205596; // Id do filme "O jogo da imitação"
     
-    init(interactor: MoviesInteractor) {
-        self.interactor = interactor;
+    init(delegate: MoviePresenterDelegate) {
+        self.delegate = delegate
     }
     
     internal func populate() {
         // TODO: Criar requisição do filme e dos filmes relacionados
+        MovieService.shared.getById(id: movieId,onResponse: { [weak self] data in
+            var movie: Movie = data;
+            MovieService.shared.getSimilarMoviesById(id: self!.movieId, onResponse: { [weak self] movies in
+                movie.similarMovies = movies
+                self?.delegate?.render(movie: movie)
+            })
+        })
     }
 }

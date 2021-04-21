@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SceneView: View {
     var body: some View {
-        NavigationView{
-            MoviesView(presenter: MoviesPresenter(interactor: MoviesInteractor()))
-        }
+        MovieView(store: MovieStore())
     }
 }
