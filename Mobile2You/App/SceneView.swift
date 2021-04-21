@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SceneView: View {
+    
     var body: some View {
         MovieView(store: MovieStore())
     }

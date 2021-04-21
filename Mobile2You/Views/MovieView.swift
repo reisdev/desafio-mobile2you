@@ -13,22 +13,13 @@ struct MovieView: View {
     var presenter: MoviePresenter;
     @ObservedObject var store: MovieStore;
     
-    let imageResizer: SDImageResizingTransformer = SDImageResizingTransformer(size: CGSize(width:UIScreen.main.bounds.width,height: 350), scaleMode: .aspectFill)
-    
     init(store: MovieStore){
         self.presenter = MoviePresenter(delegate: store)
         self.store = store
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().isTranslucent = true
-    }
-    
-    internal func getImageUrl(path: String) -> String {
-        return String(format:"%@%@","https://image.tmdb.org/t/p/w500",path)
     }
     
     var body: some View {
-        HStack{
+        ZStack {
             VStack(alignment: .leading) {
                 VStack{() -> AnyView in
                     switch store.state {
@@ -37,10 +28,7 @@ struct MovieView: View {
                             ProgressView().scaleEffect(2,anchor: .center))
                     case .loaded(let movie):
                         return (AnyView(
-                            WebImage(url: URL(string: getImageUrl(path: movie.posterPath)),
-                                     context: [.imageTransformer: imageResizer])
-                                .mask(LinearGradient(gradient: Gradient(colors: [Color.black,Color.clear]),
-                                                     startPoint: .center, endPoint: .bottom))
+                            MovieDetails(movie: movie)
                         ))
                     }
                 }
@@ -48,7 +36,8 @@ struct MovieView: View {
             }.onAppear(perform: self.presenter.populate)
             .navigationBarTitle("",displayMode: .inline)
             .navigationBarHidden(true)
-        }.frame(maxWidth: .infinity,maxHeight: .infinity)
+        }.frame(height: UIScreen.main.bounds.height)
+        .edgesIgnoringSafeArea([.top,.bottom])
         .background(Color.black)
     }
 }
