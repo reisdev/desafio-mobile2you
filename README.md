@@ -33,7 +33,7 @@ Para realizar este projeto, recebi instruções sobre os requisitos e também di
 
 Abaixo, temos o resultado final da interface da aplicação:
 
-<img alt="Captura de tela da aplicação contida neste projeto. No topo, a capa do filme 'O Jogo da Imitação'. Logo em seguida, seu título. Abaixo do título temos um ícone de coração com o contador de likes, indicando 13 mil e 400 likes, e, ao lado, um ícone de fogo e o indicador de popularidade, indicando 0. Abaixo, uma lista de filmes relacionados." src="https://user-images.githubusercontent.com/23380987/115759792-7ecf6200-a355-11eb-9302-ea930d1d752e.png" height="500">
+<img alt="Captura de tela da aplicação contida neste projeto. No topo, a capa do filme 'O Jogo da Imitação'. Logo em seguida, seu título. Abaixo do título temos um ícone de coração com o contador de likes, indicando 13 mil e 400 likes, e, ao lado, um ícone de fogo e o indicador de popularidade, indicando 0. Abaixo, uma lista de filmes relacionados." src="https://user-images.githubusercontent.com/23380987/115766012-4da66000-a35c-11eb-87ba-2397d4a80299.png" height="500">
 
 Todos os requisitos foram atendidos na implementação deste projeto. O design pattern escolhido foi o MVP, os dados do filme e a lista de filmes recomendados são obtidos nos <i>endpoints</i> da [API](https://developers.themoviedb.org/3).
 
