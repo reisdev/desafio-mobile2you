@@ -26,11 +26,11 @@ struct Movie: Codable {
     var poster_path: String;
     var releaseDate: String;
     var similarMovies: [Movie];
-    var genres: [Genre]?;
-    var genre_ids: [Int]?;
+    var genres: [Genre];
+    var genre_ids: [Int];
     var releaseYear: Int {
         get {
-            return Int(releaseDate.split(separator: "-")[0]) ?? 1970
+            return Int(releaseDate.split(separator: "-")[0]) ?? 0
         }
     }
     
@@ -42,6 +42,7 @@ struct Movie: Codable {
             self.poster_path = path
         }
     };
+    
     enum CodingKeys: String,CodingKey {
         case id = "id"
         case overview = "overview"
@@ -65,40 +66,50 @@ struct Movie: Codable {
         poster_path = try values.decode(String.self,forKey: .poster_path)
         releaseDate = try values.decode(String.self, forKey: .releaseDate)
         if(values.contains(.genres)) {
-            genres = try values.decodeIfPresent([Genre].self,forKey: .genres)
+            genres = try values.decode([Genre].self,forKey: .genres)
+        }
+        else {
+            genres = []
         }
         if (values.contains(.genre_ids)) {
-            genre_ids = try values.decodeIfPresent([Int].self,forKey: .genre_ids)
+            genre_ids = try values.decode([Int].self,forKey: .genre_ids)
+        } else {
+            genre_ids = []
         }
         similarMovies = []
     }
+    
+    // Retorna as 3 primeiras categorias por ordem alfabética, separadas por vírgula
+    func genresToString() -> String {
+        let limit = min(genres.count,3)
+        return String(format: "%@",genres.sorted{ $0.name < $1.name }[0..<limit].map{$0.name}
+                        .reduce("",{$0 == "" ? $1 : "\($0), \($1)" }))
+    }
 }
 
-struct SimilarMovieResponse: Codable {
-    var page: Int
-    var results: [Movie]
-    var totalPages: Int
-    var totalCount: Int
+class MovieViewModel {
+    var movie: Movie;
+    var similarMovies: [Movie]
+    var genres: Dictionary<Int,String>
     
-    enum CodingKeys: String,CodingKey {
-        case page = "page"
-        case results = "results"
-        case totalPages = "total_pages"
-        case totalCount = "total_results"
+    init(movie: Movie, similarMovies: [Movie],genres: Dictionary<Int,String>) {
+        self.movie = movie
+        self.similarMovies = similarMovies
+        self.genres = genres
     }
 }
 
 class MovieStore: ObservableObject {
     enum State {
         case loading
-        case loaded(movie: Movie)
+        case loaded(data: MovieViewModel)
     }
     @Published var state: State = .loading
 }
 
 extension MovieStore: MoviePresenterDelegate {
-    func render(movie: Movie) {
-        self.state = .loaded(movie: movie)
+    func render(data: MovieViewModel) {
+        self.state = .loaded(data: data)
     }
     func renderLoading(){
         self.state = .loading

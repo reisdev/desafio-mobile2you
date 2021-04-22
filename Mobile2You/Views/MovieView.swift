@@ -7,11 +7,14 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import RxSwift
 
 struct MovieView: View {
     
     var presenter: MoviePresenter;
     @ObservedObject var store: MovieStore;
+    //    @ObservedObject var state: MovieViewModel;
+    
     @State var showGoBack: Bool = true;
     
     init(store: MovieStore){
@@ -30,11 +33,11 @@ struct MovieView: View {
                         case .loading:
                             return AnyView(
                                 ProgressView().scaleEffect(2,anchor: .center))
-                        case .loaded(let movie):
+                        case .loaded(let data):
                             return (AnyView(
                                 ScrollView(showsIndicators: false) {
-                                    MovieDetails(movie: movie)
-                                    ForEach(movie.similarMovies,id: \.id) { movie in MovieListItem(movie: movie)
+                                    MovieDetails(movie: data.movie)
+                                    ForEach(data.similarMovies,id: \.id) { movie in MovieListItem(movie: movie, genres: data.genres)
                                     }.background(Color.black)
                                 }.edgesIgnoringSafeArea(.all)
                             ))
