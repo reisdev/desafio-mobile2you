@@ -12,6 +12,7 @@ struct MovieView: View {
     
     var presenter: MoviePresenter;
     @ObservedObject var store: MovieStore;
+    @State var showGoBack: Bool = true;
     
     init(store: MovieStore){
         self.presenter = MoviePresenter(delegate: store)
@@ -20,7 +21,7 @@ struct MovieView: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             Color.black.edgesIgnoringSafeArea(.all)
             HStack {
                 VStack(alignment: .leading) {
@@ -42,6 +43,14 @@ struct MovieView: View {
                     Spacer()
                 }
             }.background(Color.black)
+            if(self.showGoBack) {
+                Button(action: {}){
+                    Image("chevron-left-solid").resizable().scaledToFit()
+                        .frame(width: 20, height: 20).foregroundColor(.white)
+                }.frame(width: 30,height: 30)
+                .background(Color.black)
+                .clipShape(Circle()).padding(.leading,20).padding(.top,50)
+            }
         }.navigationBarTitle("",displayMode: .inline)
         .edgesIgnoringSafeArea(.all)
         .navigationBarHidden(true)
