@@ -6,7 +6,7 @@ Este desafio consiste na criação de uma réplica da tela de detalhe dos filmes
 
 ## 📝 Especificação
 
-Para realizar este projeto, recebi instruções sobre os requisitos e também dicas que 
+Para realizar este projeto, recebi instruções sobre os requisitos e também dicas que auxiliaram bastante no processo. Abaixo, a lista com todas as informações:
 
 ### ☑️ Requisitos
 
@@ -21,7 +21,7 @@ Para realizar este projeto, recebi instruções sobre os requisitos e também di
 
 ### 💡 Dicas 
 
-1. Você pode usar o Alamofire para facilitar a sua vcida (é apenas uma dica, não é obrigatório)
+1. Você pode usar o Alamofire para facilitar a sua vida (é apenas uma dica, não é obrigatório)
 2. A lista de filmes abaixo do detalhe do filme pode ser o retorno da [getSimilarMovies](https://developers.themoviedb.org/3/movies/get-similar-movies)
 3. Gostamos de Rx
 4. Testes são sempre bem-vindos
@@ -68,3 +68,9 @@ Agora que a chave está configurada, basta executar a aplicação clicando no bo
 E então a aplicação será executada na sua máquina.
 
 ### 🧾 Considerações
+
+Desenvolver esse projeto foi muito interessante, pois pequenos detalhes, como a exibição dos gêneros dos filmes e o tratamento de exceções dos serviços, me fizeram pensar em soluções simples que me deixaram muito satisfeito. Me esforcei para cobrir o máximo possível de dicas. 
+
+Sobre a especificação, vi apenas um problema: O requisito de número 4, o texto `<popularity> views` não me pareceu o mais adequado, talvez `<popularity> view rate` fizesse mais sentido.
+
+Por fim, agradeço a oportunidade de participar deste processo e espero que gostem do resultado! Quaisquer dúvidas, estou à disposição!
