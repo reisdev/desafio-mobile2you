@@ -24,14 +24,10 @@ class SimilarMovieResponse: Codable {
 }
 
 // Singleton para recuperar os dados dos filmes
-class MovieService {
-    
-    var apiURL : String = "https://api.themoviedb.org/3";
-    var endpoint: String = "movie"
-    var apiKey: String = ProcessInfo.processInfo.environment["API_KEY"] ?? "";
+class MovieService : Service {
     
     static let shared: MovieService = {
-        let instance = MovieService()
+        let instance = MovieService(endpoint: "movie")
         return instance
     }()
     
@@ -44,8 +40,17 @@ class MovieService {
                 case .success(let movie):
                     observer.onNext(movie)
                     observer.onCompleted()
-                case .failure(let error):
-                    observer.onError(error)
+                case .failure:
+                    switch response.response!.statusCode {
+                    case 401:
+                        observer.onError(RequestError.unauthorized)
+                    case 404:
+                        observer.onError(RequestError.notFound)
+                    case 500...503:
+                        observer.onError(RequestError.serverUnavailable)
+                    default:
+                        observer.onError(RequestError.unknown)
+                    }
                 }
             }
             return Disposables.create {
@@ -63,8 +68,17 @@ class MovieService {
                 case .success(let movies):
                     observer.onNext(movies.results)
                     observer.onCompleted()
-                case .failure(let error):
-                    observer.onError(error)
+                case .failure:
+                    switch response.response!.statusCode {
+                    case 401:
+                        observer.onError(RequestError.unauthorized)
+                    case 404:
+                        observer.onError(RequestError.notFound)
+                    case 500...503:
+                        observer.onError(RequestError.serverUnavailable)
+                    default:
+                        observer.onError(RequestError.unknown)
+                    }
                 }
             }
             return Disposables.create {

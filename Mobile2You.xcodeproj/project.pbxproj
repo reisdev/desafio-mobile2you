@@ -10,6 +10,7 @@
 		6D1474AFCA876E08BEAE7989 /* Pods_Mobile2You_Mobile2YouUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6FAFEE6A5FF75AEC9DE7AD /* Pods_Mobile2You_Mobile2YouUITests.framework */; };
 		71C049A251E24844826ED13C /* Pods_Mobile2YouTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47820DEF95E69BF5056B874 /* Pods_Mobile2YouTests.framework */; };
 		A9A9318D76D10C95B15BFA30 /* Pods_Mobile2You.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1D6461460C2D1AB354C526 /* Pods_Mobile2You.framework */; };
+		C50BA9CF26321F9900839305 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BA9CE26321F9900839305 /* Service.swift */; };
 		C50D6525262DDB63009333E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D6524262DDB63009333E1 /* AppDelegate.swift */; };
 		C50D6527262DDB63009333E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D6526262DDB63009333E1 /* SceneDelegate.swift */; };
 		C50D652B262DDB76009333E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C50D652A262DDB76009333E1 /* Assets.xcassets */; };
@@ -29,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C50BA9B026320DCC00839305 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C50D6519262DDB63009333E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C50D6520262DDB63009333E1;
+			remoteInfo = Mobile2You;
+		};
 		C50D6538262DDB78009333E1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C50D6519262DDB63009333E1 /* Project object */;
@@ -52,6 +60,8 @@
 		6B9D3AC73D3C15E876F2CB01 /* Pods-Mobile2You-Mobile2YouUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile2You-Mobile2YouUITests.release.xcconfig"; path = "Target Support Files/Pods-Mobile2You-Mobile2YouUITests/Pods-Mobile2You-Mobile2YouUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B43C66840BCFCB4F0BF9B28 /* Pods-Mobile2You.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile2You.release.xcconfig"; path = "Target Support Files/Pods-Mobile2You/Pods-Mobile2You.release.xcconfig"; sourceTree = "<group>"; };
 		ACBEE8FA8976AA1E1D053D7B /* Pods-Mobile2YouTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile2YouTests.release.xcconfig"; path = "Target Support Files/Pods-Mobile2YouTests/Pods-Mobile2YouTests.release.xcconfig"; sourceTree = "<group>"; };
+		C50BA9AB26320DCC00839305 /* MovieServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C50BA9CE26321F9900839305 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C50D6521262DDB63009333E1 /* Mobile2You.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobile2You.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C50D6524262DDB63009333E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C50D6526262DDB63009333E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,17 +79,24 @@
 		C54AAA62262E5BC200B5D281 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		C54AAA63262E5BC300B5D281 /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
 		C54AAA85262E63D600B5D281 /* SceneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
-		C54AAABB262FD62E00B5D281 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		C54AAABB262FD62E00B5D281 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C54AAAD826307A7E00B5D281 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		C54AAAE12630B18C00B5D281 /* MovieListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListItem.swift; sourceTree = "<group>"; };
 		C54AAAE62630BFB500B5D281 /* GenreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreService.swift; sourceTree = "<group>"; };
-		C54AAAF726319A6B00B5D281 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		C54AAAF726319A6B00B5D281 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F47820DEF95E69BF5056B874 /* Pods_Mobile2YouTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile2YouTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61CF1F59478F231EAE398F3 /* Pods-Mobile2You-Mobile2YouUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mobile2You-Mobile2YouUITests.debug.xcconfig"; path = "Target Support Files/Pods-Mobile2You-Mobile2YouUITests/Pods-Mobile2You-Mobile2YouUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6FAFEE6A5FF75AEC9DE7AD /* Pods_Mobile2You_Mobile2YouUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mobile2You_Mobile2YouUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C50BA9A826320DCB00839305 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C50D651E262DDB63009333E1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +152,7 @@
 				C50D6521262DDB63009333E1 /* Mobile2You.app */,
 				C50D6537262DDB78009333E1 /* Mobile2YouTests.xctest */,
 				C50D6542262DDB78009333E1 /* Mobile2YouUITests.xctest */,
+				C50BA9AB26320DCC00839305 /* MovieServiceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,17 +160,17 @@
 		C50D6523262DDB63009333E1 /* Mobile2You */ = {
 			isa = PBXGroup;
 			children = (
-				C54AAAF726319A6B00B5D281 /* README.md */,
-				C54AAABB262FD62E00B5D281 /* .gitignore */,
 				C54AAA6F262E5BFA00B5D281 /* App */,
 				C54AAADD2630AADD00B5D281 /* Components */,
 				C54AAA81262E621300B5D281 /* Models */,
 				C54AAA82262E623B00B5D281 /* Presenters */,
-				C54AAA84262E626F00B5D281 /* Views */,
-				C54AAA83262E625400B5D281 /* Services */,
 				C50D652C262DDB76009333E1 /* Preview Content */,
+				C54AAA83262E625400B5D281 /* Services */,
+				C54AAA84262E626F00B5D281 /* Views */,
+				C54AAABB262FD62E00B5D281 /* .gitignore */,
 				C50D652A262DDB76009333E1 /* Assets.xcassets */,
 				C50D6532262DDB76009333E1 /* Info.plist */,
+				C54AAAF726319A6B00B5D281 /* README.md */,
 			);
 			path = Mobile2You;
 			sourceTree = "<group>";
@@ -212,8 +230,9 @@
 		C54AAA83262E625400B5D281 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				C54AAA61262E5BC200B5D281 /* MovieService.swift */,
 				C54AAAE62630BFB500B5D281 /* GenreService.swift */,
+				C54AAA61262E5BC200B5D281 /* MovieService.swift */,
+				C50BA9CE26321F9900839305 /* Service.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -251,6 +270,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C50BA9AA26320DCB00839305 /* MovieServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C50BA9B426320DCD00839305 /* Build configuration list for PBXNativeTarget "MovieServiceTests" */;
+			buildPhases = (
+				C50BA9A726320DCB00839305 /* Sources */,
+				C50BA9A826320DCB00839305 /* Frameworks */,
+				C50BA9A926320DCB00839305 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C50BA9B126320DCC00839305 /* PBXTargetDependency */,
+			);
+			name = MovieServiceTests;
+			productName = MovieServiceTests;
+			productReference = C50BA9AB26320DCC00839305 /* MovieServiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C50D6520262DDB63009333E1 /* Mobile2You */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C50D654B262DDB78009333E1 /* Build configuration list for PBXNativeTarget "Mobile2You" */;
@@ -318,6 +355,10 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					C50BA9AA26320DCB00839305 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = C50D6520262DDB63009333E1;
+					};
 					C50D6520262DDB63009333E1 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -347,11 +388,19 @@
 				C50D6520262DDB63009333E1 /* Mobile2You */,
 				C50D6536262DDB78009333E1 /* Mobile2YouTests */,
 				C50D6541262DDB78009333E1 /* Mobile2YouUITests */,
+				C50BA9AA26320DCB00839305 /* MovieServiceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C50BA9A926320DCB00839305 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C50D651F262DDB63009333E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -483,6 +532,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C50BA9A726320DCB00839305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C50D651D262DDB63009333E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,6 +551,7 @@
 				C54AAAD926307A7E00B5D281 /* MovieDetails.swift in Sources */,
 				C54AAA86262E63D600B5D281 /* SceneView.swift in Sources */,
 				C54AAA65262E5BC300B5D281 /* MoviePresenter.swift in Sources */,
+				C50BA9CF26321F9900839305 /* Service.swift in Sources */,
 				C54AAA67262E5BC300B5D281 /* MovieView.swift in Sources */,
 				C54AAA68262E5BC300B5D281 /* MovieService.swift in Sources */,
 			);
@@ -519,6 +576,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C50BA9B126320DCC00839305 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C50D6520262DDB63009333E1 /* Mobile2You */;
+			targetProxy = C50BA9B026320DCC00839305 /* PBXContainerItemProxy */;
+		};
 		C50D6539262DDB78009333E1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C50D6520262DDB63009333E1 /* Mobile2You */;
@@ -532,6 +594,44 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		C50BA9B226320DCC00839305 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MovieServiceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reisdev.com.br.MovieServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mobile2You.app/Mobile2You";
+			};
+			name = Debug;
+		};
+		C50BA9B326320DCC00839305 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MovieServiceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reisdev.com.br.MovieServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mobile2You.app/Mobile2You";
+			};
+			name = Release;
+		};
 		C50D6549262DDB78009333E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -777,6 +877,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C50BA9B426320DCD00839305 /* Build configuration list for PBXNativeTarget "MovieServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C50BA9B226320DCC00839305 /* Debug */,
+				C50BA9B326320DCC00839305 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C50D651C262DDB63009333E1 /* Build configuration list for PBXProject "Mobile2You" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

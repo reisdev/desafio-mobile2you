@@ -19,15 +19,14 @@ struct Genre: Codable {
 
 struct Movie: Codable {
     var id: Int;
+    var title: String
     var overview: String
     var popularity: Double
-    var title: String
     var voteCount: Int
     var poster_path: String;
     var releaseDate: String;
-    var similarMovies: [Movie];
-    var genres: [Genre];
-    var genre_ids: [Int];
+    var genres: [Genre]? = [];
+    var genre_ids: [Int]? = [];
     var releaseYear: Int {
         get {
             return Int(releaseDate.split(separator: "-")[0]) ?? 0
@@ -45,44 +44,21 @@ struct Movie: Codable {
     
     enum CodingKeys: String,CodingKey {
         case id = "id"
+        case title = "title"
         case overview = "overview"
         case popularity = "popularity"
-        case title = "title"
         case voteCount = "vote_count"
         case poster_path = "poster_path"
         case genres = "genres"
         case genre_ids = "genre_ids"
         case releaseDate = "release_date"
-        case similarMovies
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(Int.self, forKey: .id )
-        overview = try values.decode(String.self, forKey: .overview)
-        popularity = try values.decode(Double.self, forKey: .popularity)
-        title = try values.decode(String.self,forKey: .title)
-        voteCount = try values.decode(Int.self,forKey: .voteCount)
-        poster_path = try values.decode(String.self,forKey: .poster_path)
-        releaseDate = try values.decode(String.self, forKey: .releaseDate)
-        if(values.contains(.genres)) {
-            genres = try values.decode([Genre].self,forKey: .genres)
-        }
-        else {
-            genres = []
-        }
-        if (values.contains(.genre_ids)) {
-            genre_ids = try values.decode([Int].self,forKey: .genre_ids)
-        } else {
-            genre_ids = []
-        }
-        similarMovies = []
     }
     
     // Retorna as 3 primeiras categorias por ordem alfabética, separadas por vírgula
     func genresToString() -> String {
-        let limit = min(genres.count,3)
-        return String(format: "%@",genres.sorted{ $0.name < $1.name }[0..<limit].map{$0.name}
+        if(genres == nil) {return ""}
+        let limit = min(genres!.count,3)
+        return String(format: "%@",genres!.sorted{ $0.name < $1.name }[0..<limit].map{$0.name}
                         .reduce("",{$0 == "" ? $1 : "\($0), \($1)" }))
     }
 }
@@ -103,6 +79,7 @@ class MovieStore: ObservableObject {
     enum State {
         case loading
         case loaded(data: MovieViewModel)
+        case error(error: RequestError)
     }
     @Published var state: State = .loading
 }
@@ -113,6 +90,9 @@ extension MovieStore: MoviePresenterDelegate {
     }
     func renderLoading(){
         self.state = .loading
+    }
+    func renderError(_ error: RequestError) {
+        self.state = .error(error: error)
     }
 }
 

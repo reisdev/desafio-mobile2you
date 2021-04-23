@@ -26,24 +26,34 @@ struct MovieView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.black.edgesIgnoringSafeArea(.all)
-            HStack {
-                VStack(alignment: .leading) {
-                    VStack{() -> AnyView in
-                        switch store.state {
-                        case .loading:
-                            return AnyView(
-                                ProgressView().scaleEffect(2,anchor: .center))
-                        case .loaded(let data):
-                            return (AnyView(
-                                ScrollView(showsIndicators: false) {
-                                    MovieDetails(movie: data.movie)
-                                    ForEach(data.similarMovies,id: \.id) { movie in MovieListItem(movie: movie, genres: data.genres)
-                                    }.background(Color.black)
-                                }.edgesIgnoringSafeArea(.all)
-                            ))
-                        }
+            HStack(alignment: .center) {
+                VStack(alignment:.center) {() -> AnyView in
+                    switch store.state {
+                    case .loading:
+                        return AnyView(
+                            ProgressView().scaleEffect(2,anchor: .center))
+                    case .loaded(let data):
+                        return (AnyView(
+                            ScrollView(showsIndicators: false) {
+                                MovieDetails(movie: data.movie)
+                                ForEach(data.similarMovies,id: \.id) { movie in MovieListItem(movie: movie, genres: data.genres)
+                                }.background(Color.black)
+                            }.edgesIgnoringSafeArea(.all)
+                        ))
+                    case .error(let error):
+                        return (AnyView(
+                            VStack {
+                                Spacer()
+                                Text(error.localizedDescription)
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                                    .fontWeight(.bold)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal,20)
+                                Spacer()
+                            }
+                        ))
                     }
-                    Spacer()
                 }
             }.background(Color.black)
             if(self.showGoBack) {

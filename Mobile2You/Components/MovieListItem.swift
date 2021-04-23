@@ -17,7 +17,7 @@ struct MovieListItem: View {
     @State var checked: Bool = false;
     
     init(movie: Movie, genres: Dictionary<Int,String>) {
-        let genresList: [Genre] = movie.genre_ids.map {
+        let genresList: [Genre] = movie.genre_ids!.map {
             Genre(id: $0,name: genres[$0] ?? "")
         }
         self.movie = movie

@@ -14,14 +14,10 @@ struct GenreResponse: Codable {
 }
 
 //Singleton para recuperar os gêneros
-class GenreService {
-    
-    var apiURL : String = "https://api.themoviedb.org/3";
-    var endpoint: String = "genre"
-    var apiKey: String = ProcessInfo.processInfo.environment["API_KEY"] ?? "";
+class GenreService: Service {
     
     static let shared: GenreService = {
-        let instance = GenreService()
+        let instance = GenreService(endpoint: "genre")
         return instance
     }()
     
@@ -34,8 +30,17 @@ class GenreService {
                 case .success(let result):
                     observer.onNext(result.genres)
                     observer.onCompleted()
-                case .failure(let error):
-                    observer.onError(error)
+                case .failure:
+                    switch response.response!.statusCode {
+                    case 401:
+                        observer.onError(RequestError.unauthorized)
+                    case 404:
+                        observer.onError(RequestError.notFound)
+                    case 500...503:
+                        observer.onError(RequestError.serverUnavailable)
+                    default:
+                        observer.onError(RequestError.unknown)
+                    }
                 }
             }
             return Disposables.create {

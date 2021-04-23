@@ -12,6 +12,7 @@ import RxSwift
 protocol MoviePresenterDelegate: AnyObject {
     func renderLoading()
     func render(data: MovieViewModel)
+    func renderError(_ error: RequestError)
 }
 
 protocol MoviePresenterProtocol: AnyObject {
@@ -41,8 +42,17 @@ class MoviePresenter : MoviePresenterProtocol {
                             var dict = Dictionary<Int,String>()
                             genres.forEach { dict[$0.id] = $0.name }
                             self.delegate?.render(data: MovieViewModel(movie: movie, similarMovies: movies, genres: dict))
+                        },
+                        onError: { [self] error in
+                            self.delegate?.renderError(error as! RequestError)
                         }).disposed(by: self.disposeBag)
+                    },
+                    onError: { [self] error in
+                        self.delegate?.renderError(error as! RequestError)
                     }).disposed(by: self.disposeBag)
+            },
+            onError: { [self] error in
+                self.delegate?.renderError(error as! RequestError)
             }).disposed(by: self.disposeBag)
         
     }
