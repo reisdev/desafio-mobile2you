@@ -6,7 +6,7 @@ Este desafio consiste na criação de uma réplica da tela de detalhe dos filmes
 
 ## 📝 Especificação
 
-Para realizar este projeto, recebi instruções sobre os requisitos e também dicas que 
+Para realizar este projeto, recebi instruções sobre os requisitos e também dicas que auxiliaram bastante no processo. Abaixo, a lista com todas as informações:
 
 ### ☑️ Requisitos
 
@@ -21,7 +21,7 @@ Para realizar este projeto, recebi instruções sobre os requisitos e também di
 
 ### 💡 Dicas 
 
-1. Você pode usar o Alamofire para facilitar a sua vcida (é apenas uma dica, não é obrigatório)
+1. Você pode usar o Alamofire para facilitar a sua vida (é apenas uma dica, não é obrigatório)
 2. A lista de filmes abaixo do detalhe do filme pode ser o retorno da [getSimilarMovies](https://developers.themoviedb.org/3/movies/get-similar-movies)
 3. Gostamos de Rx
 4. Testes são sempre bem-vindos
